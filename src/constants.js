@@ -13,6 +13,7 @@ export const initGameState = {
     position : [createPosition()],
     turn : 'w',
     candidateMoves : [],
+    selectedPiece : null,
     movesList : [],
 
     promotionSquare : null,

@@ -24,17 +24,19 @@ export const reducer = (state, action) => {
         }
 
         case actionTypes.GENERATE_CANDIDATE_MOVES : {
-            const {candidateMoves} = action.payload
+            const {candidateMoves, piece, rank, file} = action.payload
             return {
                 ...state,
-                candidateMoves
+                candidateMoves,
+                selectedPiece: { piece, rank, file }
             }
-        } 
+        }
 
         case actionTypes.CLEAR_CANDIDATE_MOVES : {
             return {
                 ...state,
-                candidateMoves : []
+                candidateMoves : [],
+                selectedPiece: null
             }
         }
     

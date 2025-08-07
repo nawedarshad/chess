@@ -47,9 +47,13 @@ const Pieces = () => {
         return {x,y}
     }
 
-    const move = e => {
-        const {x,y} = calculateCoords(e)
-        const [piece,rank,file] = e.dataTransfer.getData("text").split(',')
+    const move = ({x,y}) => {
+        const selected = appState.selectedPiece;
+        if (!selected) {
+            dispatch(clearCandidates());
+            return;
+        }
+        const { piece, rank, file } = selected;
 
         if(appState.candidateMoves.find(m => m[0] === x && m[1] === y)){
             const opponent = piece.startsWith('b') ? 'w' : 'b'
@@ -89,19 +93,15 @@ const Pieces = () => {
         dispatch(clearCandidates())
     }
 
-    const onDrop = e => {
-        e.preventDefault()
-        
-        move (e)
+    const handleClick = e => {
+        const {x,y} = calculateCoords(e)
+        move({x,y})
     }
-    
-    const onDragOver = e => {e.preventDefault()}
 
-    return <div 
-        className='pieces' 
-        ref={ref} 
-        onDrop={onDrop} 
-        onDragOver={onDragOver} > 
+    return <div
+        className='pieces'
+        ref={ref}
+        onClick={handleClick} >
         {currentPosition.map((r,rank) => 
             r.map((f,file) => 
                 currentPosition[rank][file]
