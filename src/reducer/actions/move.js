@@ -13,10 +13,10 @@ export const clearCandidates = () => {
     }
 }
 
-export const generateCandidates = ({candidateMoves}) => {
+export const generateCandidates = ({candidateMoves, piece, rank, file}) => {
     return {
         type: actionTypes.GENERATE_CANDIDATE_MOVES,
-        payload : {candidateMoves}
+        payload : {candidateMoves, piece, rank, file}
     }
 }
 
