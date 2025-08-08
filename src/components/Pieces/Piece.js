@@ -12,9 +12,8 @@ const Piece = ({
     const { turn, castleDirection, position : currentPosition } = appState
 
     const onClickPiece = e => {
-        e.stopPropagation();
-
         if (turn === piece[0]){
+            e.stopPropagation();
             const candidateMoves =
                 arbiter.getValidMoves({
                     position : currentPosition[currentPosition.length - 1],

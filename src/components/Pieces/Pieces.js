@@ -83,10 +83,10 @@ const Pieces = () => {
 
             if (arbiter.insufficientMaterial(newPosition))
                 dispatch(detectInsufficientMaterial())
-            else if (arbiter.isStalemate(newPosition,opponent,castleDirection)){
+            else if (arbiter.isStalemate(newPosition,opponent,castleDirection,currentPosition)){
                 dispatch(detectStalemate())
             }
-            else if (arbiter.isCheckMate(newPosition,opponent,castleDirection)){
+            else if (arbiter.isCheckMate(newPosition,opponent,castleDirection,currentPosition)){
                 dispatch(detectCheckmate(piece[0]))
             }
         }
