@@ -80,8 +80,8 @@ const arbiter = {
             return movePiece({position,piece,rank,file,x,y})
     },
 
-    isStalemate : function(position,player,castleDirection) {
-        const isInCheck = this.isPlayerInCheck({positionAfterMove: position, player})
+    isStalemate : function(position,player,castleDirection,prevPosition) {
+        const isInCheck = this.isPlayerInCheck({positionAfterMove: position, position: prevPosition, player})
 
         if (isInCheck)
             return false
@@ -90,8 +90,9 @@ const arbiter = {
         const moves = pieces.reduce((acc,p) => acc = [
             ...acc,
             ...(this.getValidMoves({
-                    position, 
-                    castleDirection, 
+                    position,
+                    prevPosition,
+                    castleDirection,
                     ...p
                 })
             )
@@ -132,8 +133,8 @@ const arbiter = {
         return false
     },
 
-    isCheckMate : function(position,player,castleDirection) {
-        const isInCheck = this.isPlayerInCheck({positionAfterMove: position, player})
+    isCheckMate : function(position,player,castleDirection,prevPosition) {
+        const isInCheck = this.isPlayerInCheck({positionAfterMove: position, position: prevPosition, player})
 
         if (!isInCheck)
             return false
@@ -142,8 +143,9 @@ const arbiter = {
         const moves = pieces.reduce((acc,p) => acc = [
             ...acc,
             ...(this.getValidMoves({
-                    position, 
-                    castleDirection, 
+                    position,
+                    prevPosition,
+                    castleDirection,
                     ...p
                 })
             )
