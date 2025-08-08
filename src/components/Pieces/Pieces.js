@@ -57,7 +57,7 @@ const Pieces = () => {
 
         if(appState.candidateMoves.find(m => m[0] === x && m[1] === y)){
             const opponent = piece.startsWith('b') ? 'w' : 'b'
-            const castleDirection = appState.castleDirection[`${piece.startsWith('b') ? 'white' : 'black'}`]
+            const castleDirection = appState.castleDirection[opponent]
 
             if ((piece==='wp' && x === 7) || (piece==='bp' && x === 0)){
                 openPromotionBox({rank,file,x,y})
